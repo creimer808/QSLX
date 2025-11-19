@@ -278,6 +278,61 @@ The script handles:
 - Database setup
 - Process management (PM2 or direct)
 
+## Start/Stop Scripts
+
+### Start Script (`start.sh`)
+
+Gracefully starts the QSLX application:
+
+```bash
+./start.sh [OPTIONS]
+```
+
+**Options:**
+- `--pm2` - Force use of PM2 (if installed)
+- `--direct` - Force direct start without PM2
+- `--help` - Show help message
+
+**Examples:**
+```bash
+# Start with PM2 (recommended)
+./start.sh --pm2
+
+# Start directly (no PM2)
+./start.sh --direct
+
+# Interactive start (asks if PM2 is available)
+./start.sh
+```
+
+The script will:
+- Check if the app is already running
+- Verify prerequisites (.env file, built application)
+- Start with PM2 if available (or ask if you want to use it)
+- Provide access URLs after starting
+
+### Stop Script (`stop.sh`)
+
+Gracefully stops the QSLX application:
+
+```bash
+./stop.sh
+```
+
+The script will:
+- Detect if running with PM2 or directly
+- Send SIGTERM for graceful shutdown (allows current requests to finish)
+- Wait for graceful shutdown before forcing if needed
+- Provide feedback on the shutdown process
+
+**Usage:**
+```bash
+# Stop the application
+./stop.sh
+```
+
+**Note:** The stop script works with both PM2 and direct npm start processes.
+
 ## License
 
 MIT
