@@ -37,7 +37,7 @@ QSLX is a modern, lightweight ham radio contact logging application built with t
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/creimer808/QSLXgit 
+git clone https://github.com/creimer808/QSLX
 cd QSLX
 ```
 
