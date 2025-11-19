@@ -122,6 +122,13 @@ export const contactRouter = createTRPCRouter({
       }
     });
 
+    const pathTypeCounts: Record<string, number> = {};
+    contacts.forEach((c) => {
+      if (c.pathType) {
+        pathTypeCounts[c.pathType] = (pathTypeCounts[c.pathType] ?? 0) + 1;
+      }
+    });
+
     // Frequency distribution (group by MHz ranges)
     const frequencyRanges: Record<string, number> = {};
     contacts.forEach((c) => {
@@ -144,6 +151,7 @@ export const contactRouter = createTRPCRouter({
       uniqueCountries,
       bandCounts,
       modeCounts,
+      pathTypeCounts,
       frequencyRanges,
       contactsByDate,
     };

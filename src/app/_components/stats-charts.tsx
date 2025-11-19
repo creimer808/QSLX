@@ -51,6 +51,11 @@ export function StatsCharts() {
     value: count,
   }));
 
+  const pathTypeData = Object.entries(stats.pathTypeCounts).map(([pathType, count]) => ({
+    name: pathType,
+    value: count,
+  }));
+
   const frequencyData = Object.entries(stats.frequencyRanges)
     .map(([range, count]) => ({
       name: range,
@@ -152,6 +157,39 @@ export function StatsCharts() {
           <p className="text-center text-gray-500">No frequency data available</p>
         )}
       </div>
+
+      {/* Path Type Distribution */}
+      <div className="rounded-lg bg-white p-4 shadow">
+          <h3 className="mb-4 text-lg font-semibold text-gray-900">Contacts by Mode</h3>
+          {pathTypeData.length > 0 ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={pathTypeData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) =>
+                    `${name}: ${((percent ?? 0) * 100).toFixed(0)}%`
+                  }
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {pathTypeData.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="text-center text-gray-500">No mode data available</p>
+          )}
+        </div>
     </div>
   );
 }
