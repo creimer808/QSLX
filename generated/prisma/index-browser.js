@@ -171,6 +171,8 @@ exports.Prisma.ContactScalarFieldEnum = {
   frequency: 'frequency',
   mode: 'mode',
   band: 'band',
+  signalType: 'signalType',
+  pathType: 'pathType',
   rstSent: 'rstSent',
   rstReceived: 'rstReceived',
   gridSquare: 'gridSquare',

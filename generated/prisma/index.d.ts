@@ -6867,6 +6867,8 @@ export namespace Prisma {
     frequency: number | null
     mode: string | null
     band: string | null
+    signalType: string | null
+    pathType: string | null
     rstSent: string | null
     rstReceived: string | null
     gridSquare: string | null
@@ -6887,6 +6889,8 @@ export namespace Prisma {
     frequency: number | null
     mode: string | null
     band: string | null
+    signalType: string | null
+    pathType: string | null
     rstSent: string | null
     rstReceived: string | null
     gridSquare: string | null
@@ -6907,6 +6911,8 @@ export namespace Prisma {
     frequency: number
     mode: number
     band: number
+    signalType: number
+    pathType: number
     rstSent: number
     rstReceived: number
     gridSquare: number
@@ -6941,6 +6947,8 @@ export namespace Prisma {
     frequency?: true
     mode?: true
     band?: true
+    signalType?: true
+    pathType?: true
     rstSent?: true
     rstReceived?: true
     gridSquare?: true
@@ -6961,6 +6969,8 @@ export namespace Prisma {
     frequency?: true
     mode?: true
     band?: true
+    signalType?: true
+    pathType?: true
     rstSent?: true
     rstReceived?: true
     gridSquare?: true
@@ -6981,6 +6991,8 @@ export namespace Prisma {
     frequency?: true
     mode?: true
     band?: true
+    signalType?: true
+    pathType?: true
     rstSent?: true
     rstReceived?: true
     gridSquare?: true
@@ -7088,6 +7100,8 @@ export namespace Prisma {
     frequency: number | null
     mode: string | null
     band: string | null
+    signalType: string | null
+    pathType: string | null
     rstSent: string | null
     rstReceived: string | null
     gridSquare: string | null
@@ -7127,6 +7141,8 @@ export namespace Prisma {
     frequency?: boolean
     mode?: boolean
     band?: boolean
+    signalType?: boolean
+    pathType?: boolean
     rstSent?: boolean
     rstReceived?: boolean
     gridSquare?: boolean
@@ -7148,6 +7164,8 @@ export namespace Prisma {
     frequency?: boolean
     mode?: boolean
     band?: boolean
+    signalType?: boolean
+    pathType?: boolean
     rstSent?: boolean
     rstReceived?: boolean
     gridSquare?: boolean
@@ -7169,6 +7187,8 @@ export namespace Prisma {
     frequency?: boolean
     mode?: boolean
     band?: boolean
+    signalType?: boolean
+    pathType?: boolean
     rstSent?: boolean
     rstReceived?: boolean
     gridSquare?: boolean
@@ -7190,6 +7210,8 @@ export namespace Prisma {
     frequency?: boolean
     mode?: boolean
     band?: boolean
+    signalType?: boolean
+    pathType?: boolean
     rstSent?: boolean
     rstReceived?: boolean
     gridSquare?: boolean
@@ -7203,7 +7225,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "callsign" | "date" | "frequency" | "mode" | "band" | "rstSent" | "rstReceived" | "gridSquare" | "latitude" | "longitude" | "country" | "state" | "notes" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "callsign" | "date" | "frequency" | "mode" | "band" | "signalType" | "pathType" | "rstSent" | "rstReceived" | "gridSquare" | "latitude" | "longitude" | "country" | "state" | "notes" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7226,6 +7248,8 @@ export namespace Prisma {
       frequency: number | null
       mode: string | null
       band: string | null
+      signalType: string | null
+      pathType: string | null
       rstSent: string | null
       rstReceived: string | null
       gridSquare: string | null
@@ -7667,6 +7691,8 @@ export namespace Prisma {
     readonly frequency: FieldRef<"Contact", 'Float'>
     readonly mode: FieldRef<"Contact", 'String'>
     readonly band: FieldRef<"Contact", 'String'>
+    readonly signalType: FieldRef<"Contact", 'String'>
+    readonly pathType: FieldRef<"Contact", 'String'>
     readonly rstSent: FieldRef<"Contact", 'String'>
     readonly rstReceived: FieldRef<"Contact", 'String'>
     readonly gridSquare: FieldRef<"Contact", 'String'>
@@ -8169,6 +8195,8 @@ export namespace Prisma {
     frequency: 'frequency',
     mode: 'mode',
     band: 'band',
+    signalType: 'signalType',
+    pathType: 'pathType',
     rstSent: 'rstSent',
     rstReceived: 'rstReceived',
     gridSquare: 'gridSquare',
@@ -8564,6 +8592,8 @@ export namespace Prisma {
     frequency?: FloatNullableFilter<"Contact"> | number | null
     mode?: StringNullableFilter<"Contact"> | string | null
     band?: StringNullableFilter<"Contact"> | string | null
+    signalType?: StringNullableFilter<"Contact"> | string | null
+    pathType?: StringNullableFilter<"Contact"> | string | null
     rstSent?: StringNullableFilter<"Contact"> | string | null
     rstReceived?: StringNullableFilter<"Contact"> | string | null
     gridSquare?: StringNullableFilter<"Contact"> | string | null
@@ -8585,6 +8615,8 @@ export namespace Prisma {
     frequency?: SortOrderInput | SortOrder
     mode?: SortOrderInput | SortOrder
     band?: SortOrderInput | SortOrder
+    signalType?: SortOrderInput | SortOrder
+    pathType?: SortOrderInput | SortOrder
     rstSent?: SortOrderInput | SortOrder
     rstReceived?: SortOrderInput | SortOrder
     gridSquare?: SortOrderInput | SortOrder
@@ -8609,6 +8641,8 @@ export namespace Prisma {
     frequency?: FloatNullableFilter<"Contact"> | number | null
     mode?: StringNullableFilter<"Contact"> | string | null
     band?: StringNullableFilter<"Contact"> | string | null
+    signalType?: StringNullableFilter<"Contact"> | string | null
+    pathType?: StringNullableFilter<"Contact"> | string | null
     rstSent?: StringNullableFilter<"Contact"> | string | null
     rstReceived?: StringNullableFilter<"Contact"> | string | null
     gridSquare?: StringNullableFilter<"Contact"> | string | null
@@ -8630,6 +8664,8 @@ export namespace Prisma {
     frequency?: SortOrderInput | SortOrder
     mode?: SortOrderInput | SortOrder
     band?: SortOrderInput | SortOrder
+    signalType?: SortOrderInput | SortOrder
+    pathType?: SortOrderInput | SortOrder
     rstSent?: SortOrderInput | SortOrder
     rstReceived?: SortOrderInput | SortOrder
     gridSquare?: SortOrderInput | SortOrder
@@ -8658,6 +8694,8 @@ export namespace Prisma {
     frequency?: FloatNullableWithAggregatesFilter<"Contact"> | number | null
     mode?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     band?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    signalType?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    pathType?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     rstSent?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     rstReceived?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     gridSquare?: StringNullableWithAggregatesFilter<"Contact"> | string | null
@@ -9010,6 +9048,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -9030,6 +9070,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -9050,6 +9092,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9070,6 +9114,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9090,6 +9136,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -9110,6 +9158,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9129,6 +9179,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9542,6 +9594,8 @@ export namespace Prisma {
     frequency?: SortOrder
     mode?: SortOrder
     band?: SortOrder
+    signalType?: SortOrder
+    pathType?: SortOrder
     rstSent?: SortOrder
     rstReceived?: SortOrder
     gridSquare?: SortOrder
@@ -9568,6 +9622,8 @@ export namespace Prisma {
     frequency?: SortOrder
     mode?: SortOrder
     band?: SortOrder
+    signalType?: SortOrder
+    pathType?: SortOrder
     rstSent?: SortOrder
     rstReceived?: SortOrder
     gridSquare?: SortOrder
@@ -9588,6 +9644,8 @@ export namespace Prisma {
     frequency?: SortOrder
     mode?: SortOrder
     band?: SortOrder
+    signalType?: SortOrder
+    pathType?: SortOrder
     rstSent?: SortOrder
     rstReceived?: SortOrder
     gridSquare?: SortOrder
@@ -10372,6 +10430,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -10391,6 +10451,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -10526,6 +10588,8 @@ export namespace Prisma {
     frequency?: FloatNullableFilter<"Contact"> | number | null
     mode?: StringNullableFilter<"Contact"> | string | null
     band?: StringNullableFilter<"Contact"> | string | null
+    signalType?: StringNullableFilter<"Contact"> | string | null
+    pathType?: StringNullableFilter<"Contact"> | string | null
     rstSent?: StringNullableFilter<"Contact"> | string | null
     rstReceived?: StringNullableFilter<"Contact"> | string | null
     gridSquare?: StringNullableFilter<"Contact"> | string | null
@@ -10638,6 +10702,8 @@ export namespace Prisma {
     frequency?: number | null
     mode?: string | null
     band?: string | null
+    signalType?: string | null
+    pathType?: string | null
     rstSent?: string | null
     rstReceived?: string | null
     gridSquare?: string | null
@@ -10740,6 +10806,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10759,6 +10827,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10778,6 +10848,8 @@ export namespace Prisma {
     frequency?: NullableFloatFieldUpdateOperationsInput | number | null
     mode?: NullableStringFieldUpdateOperationsInput | string | null
     band?: NullableStringFieldUpdateOperationsInput | string | null
+    signalType?: NullableStringFieldUpdateOperationsInput | string | null
+    pathType?: NullableStringFieldUpdateOperationsInput | string | null
     rstSent?: NullableStringFieldUpdateOperationsInput | string | null
     rstReceived?: NullableStringFieldUpdateOperationsInput | string | null
     gridSquare?: NullableStringFieldUpdateOperationsInput | string | null

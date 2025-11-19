@@ -83,6 +83,8 @@ model Contact {
     frequency   Float?   // Frequency in MHz
     mode        String?  // SSB, CW, FT8, etc.
     band        String?  // 160m, 80m, 40m, 20m, 15m, 10m, 6m, 2m, etc.
+    signalType  String?  // DMR or Analog Contact Type
+    pathType    String?  // Repeater, Hotspot, or Simplex
     rstSent     String?  // Signal report sent
     rstReceived String?  // Signal report received
     gridSquare  String?  // Maidenhead grid square (e.g., FN20)

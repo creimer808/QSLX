@@ -23,10 +23,12 @@ export function ContactEditForm({ contactId, onClose }: ContactEditFormProps) {
 
   const [formData, setFormData] = useState({
     callsign: "",
-    date: new Date().toISOString().split("T")[0] ?? "",
+    date: "",
     frequency: "",
     mode: "",
     band: "",
+    signalType: "",
+    pathType: "",
     rstSent: "",
     rstReceived: "",
     gridSquare: "",
@@ -46,6 +48,8 @@ export function ContactEditForm({ contactId, onClose }: ContactEditFormProps) {
         frequency: contact.frequency?.toString() || "",
         mode: contact.mode || "",
         band: contact.band || "",
+        signalType: contact.signalType || "",
+        pathType: contact.pathType || "",
         rstSent: contact.rstSent || "",
         rstReceived: contact.rstReceived || "",
         gridSquare: contact.gridSquare || "",
@@ -67,6 +71,8 @@ export function ContactEditForm({ contactId, onClose }: ContactEditFormProps) {
       frequency: formData.frequency ? parseFloat(formData.frequency) : undefined,
       mode: formData.mode || undefined,
       band: formData.band || undefined,
+      signalType: formData.signalType || undefined,
+      pathType: formData.pathType || undefined,
       rstSent: formData.rstSent || undefined,
       rstReceived: formData.rstReceived || undefined,
       gridSquare: formData.gridSquare || undefined,
@@ -184,6 +190,33 @@ export function ContactEditForm({ contactId, onClose }: ContactEditFormProps) {
                 <option value="SSTV">SSTV</option>
                 <option value="AM">AM</option>
                 <option value="FM">FM</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Signal Type</label>
+              <select
+                value={formData.signalType}
+                onChange={(e) => setFormData({ ...formData, signalType: e.target.value })}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+              >
+                <option value="">Select signal type</option>
+                <option value="DMR">DMR</option>
+                <option value="Analog">Analog</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Path Type</label>
+              <select
+                value={formData.pathType}
+                onChange={(e) => setFormData({ ...formData, pathType: e.target.value })}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+              >
+                <option value="">Select path type</option>
+                <option value="Repeater">Repeater</option>
+                <option value="Digital Hotspot">Digital Hotspot</option>
+                <option value="Simplex">Simplex</option>
               </select>
             </div>
 
