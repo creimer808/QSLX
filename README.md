@@ -37,7 +37,7 @@ QSLX is a modern, lightweight ham radio contact logging application built with t
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/creimer808/QSLX
 cd QSLX
 ```
 
@@ -47,21 +47,18 @@ npm install
 ```
 
 3. Set up environment variables:
+
+Create a `.env` file in the project root with:
+```
+DATABASE_URL="file:./prisma/db.sqlite"
+SESSION_SECRET="your-secret-here" # Generate with: openssl rand -base64 32
+NODE_ENV="development"
+```
+
+**Note**: The `SESSION_SECRET` is required for production. Generate a secure secret with:
 ```bash
-cp .env.example .env
+openssl rand -base64 32
 ```
-
-Edit `.env` and add:
-```
-DATABASE_URL="file:./db.sqlite"
-AUTH_SECRET="your-secret-here" # Generate with: openssl rand -base64 32
-AUTH_DISCORD_ID="" # Optional: Discord OAuth Client ID
-AUTH_DISCORD_SECRET="" # Optional: Discord OAuth Client Secret
-```
-
-**Note**: For authentication, you can either:
-- Set up Discord OAuth (recommended for production): Get credentials from https://discord.com/developers/applications
-- Or use any other NextAuth provider (GitHub, Google, etc.) - see `src/server/auth/config.ts`
 
 4. Initialize the database:
 ```bash
@@ -75,9 +72,36 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deployment on Raspberry Pi
+## Deployment
 
-### Option 1: Direct Node.js Deployment
+### Quick Deployment (Recommended)
+
+Use the automated deployment script for the easiest setup:
+
+```bash
+# Make the script executable (if not already)
+chmod +x deploy.sh
+
+# Run the deployment script
+./deploy.sh --pm2
+```
+
+The script will:
+- ✅ Check prerequisites (Node.js, npm)
+- ✅ Set up environment variables (auto-generates SESSION_SECRET if needed)
+- ✅ Install dependencies
+- ✅ Build the application
+- ✅ Set up the database
+- ✅ Start with PM2 (process manager)
+
+**Options:**
+- `./deploy.sh --pm2` - Automatically use PM2
+- `./deploy.sh --skip-build` - Skip building (useful for updates)
+- `./deploy.sh --help` - Show all options
+
+### Manual Deployment
+
+#### Option 1: Direct Node.js Deployment
 
 1. **Install Node.js on Raspberry Pi:**
 ```bash
@@ -90,13 +114,18 @@ nvm use 20
 2. **Clone and setup:**
 ```bash
 cd ~
-git clone <your-repo-url> QSLX
+git clone https://github.com/creimer808/QSLX
 cd QSLX
 npm install
 npm run build
 ```
 
-3. **Set up environment variables** (create `.env` file)
+3. **Set up environment variables** (create `.env` file):
+```bash
+DATABASE_URL="file:./prisma/db.sqlite"
+SESSION_SECRET="your-secret-here"  # Generate with: openssl rand -base64 32
+NODE_ENV="production"
+```
 
 4. **Run database migrations:**
 ```bash
@@ -108,27 +137,92 @@ npm run db:push
 npm start
 ```
 
-### Option 2: Using PM2 (Recommended for Production)
+#### Option 2: Using PM2 (Recommended for Production)
+
+**What is PM2?** PM2 is a process manager for Node.js applications that:
+- Keeps your app running in the background
+- Automatically restarts the app if it crashes
+- Manages logs and monitoring
+- Can start on system boot
 
 1. **Install PM2:**
-```bash
-npm install -g pm2
-```
+
+   **Option A: Global installation (requires sudo/admin):**
+   ```bash
+   sudo npm install -g pm2
+   ```
+
+   **Option B: Local installation (no sudo needed):**
+   ```bash
+   npm install pm2
+   # Then use: npx pm2 instead of pm2
+   ```
+
+   **Note:** If you get a permission error (`EACCES`), you have two options:
+   - Use `sudo npm install -g pm2` (requires administrator password)
+   - Install locally: `npm install pm2` and use `npx pm2` commands
 
 2. **Start the application with PM2:**
 ```bash
 pm2 start npm --name "qslx" -- start
 pm2 save
-pm2 startup
+pm2 startup  # Follow the instructions to enable on system startup
 ```
 
-3. **Access your application:**
+3. **PM2 Management Commands:**
+
+   If installed globally:
+   ```bash
+   pm2 status          # Check application status
+   pm2 logs qslx       # View logs
+   pm2 restart qslx    # Restart application
+   pm2 stop qslx       # Stop application
+   pm2 delete qslx     # Remove from PM2
+   ```
+
+   If installed locally (use `npx`):
+   ```bash
+   npx pm2 status          # Check application status
+   npx pm2 logs qslx       # View logs
+   npx pm2 restart qslx    # Restart application
+   npx pm2 stop qslx       # Stop application
+   npx pm2 delete qslx     # Remove from PM2
+   ```
+
+4. **Access your application:**
    - If running on the Pi itself: `http://localhost:3000`
    - From another device on the network: `http://<raspberry-pi-ip>:3000`
 
-### Option 3: Docker Deployment (Coming Soon)
+### Updating the Application
 
-For easier deployment and updates, you can containerize the application with Docker.
+To update to the latest version:
+
+```bash
+# Pull latest changes
+git pull
+
+# Run deployment script (will skip build if nothing changed)
+./deploy.sh --pm2
+
+# Or manually:
+npm install
+npm run build
+npm run db:push
+pm2 restart qslx
+```
+
+### Environment Variables
+
+Required environment variables for production:
+
+- `DATABASE_URL` - SQLite database path (default: `file:./prisma/db.sqlite`)
+- `SESSION_SECRET` - Secret key for session encryption (required in production)
+- `NODE_ENV` - Set to `production` for production deployments
+
+Generate a secure `SESSION_SECRET`:
+```bash
+openssl rand -base64 32
+```
 
 ## Usage
 
@@ -141,20 +235,48 @@ For easier deployment and updates, you can containerize the application with Doc
 
 ## Database
 
-The application uses SQLite by default, which is perfect for lightweight deployments. The database file (`db.sqlite`) is stored in the project root.
+The application uses SQLite by default, which is perfect for lightweight deployments. The database file (`db.sqlite`) is stored in the `prisma/` directory.
 
 To view/edit data directly:
 ```bash
 npm run db:studio
 ```
 
+**Important**: Make sure to back up your database regularly, especially before updates:
+```bash
+cp prisma/db.sqlite prisma/db.sqlite.backup
+```
+
 ## Development
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run db:push` - Push schema changes to database
+- `npm run db:migrate` - Run database migrations
 - `npm run db:studio` - Open Prisma Studio
+- `npm run typecheck` - Run TypeScript type checking
+
+## Deployment Script
+
+The `deploy.sh` script automates the deployment process:
+
+```bash
+./deploy.sh [OPTIONS]
+```
+
+**Options:**
+- `--pm2` - Automatically use PM2 for process management
+- `--skip-build` - Skip building the application
+- `--help` - Show help message
+
+The script handles:
+- Prerequisite checks (Node.js, npm)
+- Environment variable setup
+- Dependency installation
+- Application building
+- Database setup
+- Process management (PM2 or direct)
 
 ## License
 
